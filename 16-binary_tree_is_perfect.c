@@ -4,7 +4,9 @@
  * _pow - Calculates the value of child raised to the power of height
  * @child: Max number of children in a tree
  * @height: The height of the tree
-*/
+ *
+ * Return: child ^ height
+ */
 int _pow(int child, int height)
 {
 	if (height < 0)
