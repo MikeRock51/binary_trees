@@ -1,6 +1,21 @@
 #include "binary_trees.h"
 
 /**
+ * _pow - Calculates the value of child raised to the power of height
+ * @child: Max number of children in a tree
+ * @height: The height of the tree
+*/
+int _pow(int child, int height)
+{
+	if (height < 0)
+		return (-1);
+	else if (height == 0)
+		return (1);
+
+	return (child * _pow(child, height - 1));
+}
+
+/**
  * binary_tree_size - Measures the size of a binary tree
  * @tree: A pointer to the root node of the tree to measure
  *
@@ -50,6 +65,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	size_t height, size;
+	int height_sqr;
 
 	if (!tree)
 		return (0);
@@ -59,8 +75,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	height = binary_tree_height(tree->left);
 	size = binary_tree_size(tree);
+	height_sqr = _pow(2, height + 1);
 
-	/*printf("%ld / %lu\n", 2 * (height * height) - 1, size);*/
-
-	return ((2 * (height * height)) - 1 == size);
+	return ((size_t)height_sqr - 1 == size);
 }
